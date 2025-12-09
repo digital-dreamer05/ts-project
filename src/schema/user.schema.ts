@@ -1,4 +1,4 @@
-import { object, string } from 'zod';
+import { TypeOf, object, string } from 'zod';
 
 export const creatUserSchema = object({
   body: object({
@@ -11,3 +11,5 @@ export const creatUserSchema = object({
     path: ['confirmPassword'],
   }),
 });
+
+export type CreateUserInput = TypeOf<typeof creatUserSchema>;

@@ -1,22 +1,18 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import bcrypt from 'bcrypt';
-import config from 'config';
-import { UserDocument } from './user.model';
 
-export interface SchemaDocument extends mongoose.Document {
-  user: UserDocument['_id'];
+export interface SessionDocument extends mongoose.Document {
+  user: mongoose.Types.ObjectId;
   valid: boolean;
   userAagent: string;
   createdAt: Date;
   updatedAt: Date;
-  camparePassword(candidatePassword: string): Promise<Boolean>;
 }
 
 const SessionSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     valid: { type: Boolean, default: true },
-    userAagent: { type: String },
+    userAgent: { type: String },
   },
   { timestamps: true }
 );
